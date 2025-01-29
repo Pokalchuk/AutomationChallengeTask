@@ -18,33 +18,6 @@ public static class WebDriverExtensions
         }
     }
 
-    public static bool IsElementDisplayed(this IWebDriver driver, By locator, TimeSpan? timeout = null)
-    {
-        var wait = new WebDriverWait(driver, timeout ?? TimeSpan.FromSeconds(5));
-        try
-        {
-            return wait.Until(drv =>
-            {
-                IWebElement? element = null;
-
-                try
-                {
-                    element = drv.FindElement(locator);
-                }
-                catch
-                {
-                    return false;
-                }
-
-                return element != null && element.Displayed;
-            });
-        }
-        catch (WebDriverTimeoutException)
-        {
-            return false;
-        }
-    }
-
     public static bool IsElementEnabled(this IWebDriver driver, By locator, TimeSpan? timeout = null)
     {
         var wait = new WebDriverWait(driver, timeout ?? TimeSpan.FromSeconds(5));
