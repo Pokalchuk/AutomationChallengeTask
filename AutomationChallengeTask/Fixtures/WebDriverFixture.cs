@@ -21,6 +21,6 @@ public class WebDriverFixture : IDisposable
     public void Dispose()
     {
         Driver.Quit();
-        Driver.Dispose();
+        GC.SuppressFinalize(this);
     }
 }
